@@ -1,0 +1,2 @@
+# Daily 4pm news share to Tom Geurts via Slack
+0 16 * * * user /home/user/claude/scripts/daily-news-tom.sh >> /home/user/claude/logs/daily-news-tom.log 2>&1
