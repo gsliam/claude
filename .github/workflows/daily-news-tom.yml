@@ -1,0 +1,35 @@
+name: Daily News Share - Tom Geurts
+
+on:
+  schedule:
+    # 4pm Amsterdam time (CEST = UTC+2, CET = UTC+1)
+    # Runs at 14:00 UTC (4pm CEST summer) — adjust to 15:00 UTC in winter
+    - cron: '0 14 * * *'
+  workflow_dispatch: {}
+
+jobs:
+  share-news:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Claude CLI
+        run: npm install -g @anthropic-ai/claude-code
+
+      - name: Share latest news with Tom Geurts
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+        run: |
+          claude --dangerously-skip-permissions -p "
+          Search the web for news from today and yesterday covering:
+          (1) Social media, AI, TikTok Shop, and social commerce trends — top 3 items.
+          (2) Client news for: HEMA, Amazon Prime Video, New York Pizza, Vodafone, Picnic,
+              LEGO, Marktplaats, Unilever (Axe / Signal / Andrelon / Vaseline), Samsung,
+              JBL (Harman), KLM, The Social Hub, Etos, Zeeman, HelloFresh, SharkNinja,
+              OLA/Magnum — max 3 items per client, focus on launches, mergers, takeovers.
+          Only include news from yesterday or today. Skip anything older.
+          Then send a concise Slack DM to Tom Geurts (user_id: UUSM9N0MD) with the summary.
+          Format with two sections: *Client News* and *Industry & Social/AI News*.
+          Sign off as: 'Your daily news update — $(date +%d/%m/%Y)'
+          "
