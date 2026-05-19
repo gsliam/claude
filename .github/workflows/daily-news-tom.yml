@@ -1,0 +1,32 @@
+name: Daily News for Tom Geurts
+
+on:
+  schedule:
+    # 4pm Amsterdam time (CEST = UTC+2, so 14:00 UTC)
+    - cron: '0 14 * * 1-5'
+  workflow_dispatch:
+
+jobs:
+  send-news:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Send daily news to Tom Geurts via Slack
+        uses: anthropics/claude-code-action@beta
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          allowed_tools: "mcp__Slack__slack_send_message,mcp__Slack__slack_search_users,WebSearch"
+          mcp_config: ${{ secrets.MCP_CONFIG }}
+          prompt: |
+            Today is $(date '+%Y-%m-%d'). It is 4pm Amsterdam time.
+
+            Search the web for the latest news (from today and yesterday only) on these topics:
+            1. Client news for: HEMA, Amazon Prime Video, New York Pizza, Vodafone, Picnic, LEGO, Marktplaats, Unilever, Samsung, JBL, KLM, The Social Hub, Etos, Zeeman, HelloFresh, SharkNinja, OLA / Magnum — focus on NL news, mergers, takeovers, launches. Max 3 items per client, only include clients with actual news.
+            2. Top 3 news items in: social media, AI, TikTok Shop / social commerce.
+
+            Format the message in clean Slack markdown with sections and bullet points. Keep it concise.
+
+            Send this as a Slack DM to Tom Geurts (user ID: UUSM9N0MD).
+
+            Start the message with: "*Your Daily News Update — $(date '+%d/%m/%y')* :newspaper:"
