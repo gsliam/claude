@@ -1,0 +1,27 @@
+name: Daily News for Tom Geurts
+
+on:
+  schedule:
+    # 14:00 UTC = 16:00 CEST (Amsterdam, summer) / 15:00 CET (winter)
+    - cron: '0 14 * * *'
+  workflow_dispatch: # allow manual trigger from GitHub UI
+
+jobs:
+  send-news:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install anthropic slack-sdk
+
+      - name: Send daily news to Tom Geurts
+        run: python scripts/daily_news_tom.py
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
