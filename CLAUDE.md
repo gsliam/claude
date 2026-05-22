@@ -17,3 +17,10 @@
 
 ### Client watchlist:
 HEMA, Amazon Prime Video, New York Pizza, Vodafone, Picnic, LEGO, Marktplaats, Unilever - Axe, Signal (Unilever), Samsung, JBL (Harman), KLM, The Social Hub, Etos, Zeeman, Andrelon (Unilever), Vaseline (Unilever), Hello Fresh, SharkNinja, OLA / Magnum
+
+## Daily News Share — Tom Geurts
+
+- **Recipient**: Tom Geurts (Slack user_id: UUSM9N0MD)
+- **Schedule**: Every day at 4pm
+- **Content**: Top social / social AI / AI / TikTok Shop / social commerce news (same categories as briefing section 6)
+- **Format**: Bullet-point news digest with bold headlines, sent as a Slack DM
