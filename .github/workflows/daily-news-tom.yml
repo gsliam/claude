@@ -1,0 +1,23 @@
+name: Daily News to Tom Geurts
+
+on:
+  schedule:
+    - cron: '0 14 * * *'  # 16:00 Amsterdam (CEST = UTC+2)
+  workflow_dispatch:
+
+jobs:
+  send-news:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: pip install anthropic requests
+      - name: Fetch and send daily news
+        run: python scripts/daily_news_tom.py
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          BRAVE_API_KEY: ${{ secrets.BRAVE_API_KEY }}
