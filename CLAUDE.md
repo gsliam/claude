@@ -15,5 +15,13 @@
 5. Client news (yesterday/today only, max 3 per client, NL / mergers / takeovers focus)
 6. Top 3 social / social AI / AI / TikTok Shop / social commerce news
 
+## Daily News Share – Tom Geurts
+
+- **Recipient**: Tom Geurts (Slack user_id: UUSM9N0MD, Technical Director)
+- **Time**: Every day at 16:00 Amsterdam time (CEST/CET)
+- **Content**: Top 3 latest news items on social media, AI, TikTok Shop, and social commerce
+- **Format**: Numbered list with headline, 1-sentence summary, and source link
+- **Footer**: "_Sent by Liam's AI assistant_"
+
 ### Client watchlist:
 HEMA, Amazon Prime Video, New York Pizza, Vodafone, Picnic, LEGO, Marktplaats, Unilever - Axe, Signal (Unilever), Samsung, JBL (Harman), KLM, The Social Hub, Etos, Zeeman, Andrelon (Unilever), Vaseline (Unilever), Hello Fresh, SharkNinja, OLA / Magnum
