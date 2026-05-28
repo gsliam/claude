@@ -1,0 +1,28 @@
+name: Daily News for Tom
+
+on:
+  schedule:
+    # 4pm Amsterdam time = 14:00 UTC (CEST, UTC+2, runs Apr–Oct)
+    # Adjust to 15:00 UTC in winter (CET, UTC+1) if needed
+    - cron: "0 14 * * 1-5"
+  workflow_dispatch: # allow manual trigger for testing
+
+jobs:
+  send-news:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install anthropic
+
+      - name: Send daily news to Tom Geurts
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+        run: python scripts/news_for_tom.py
