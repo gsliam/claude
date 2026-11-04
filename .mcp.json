@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "affectui": {
+      "type": "http",
+      "url": "https://www.affectui.com/api/mcp"
+    }
+  }
+}
